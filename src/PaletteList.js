@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 
 const styles = {
   root: {
-    backgroundColor: "blue",
+    backgroundColor: "#f4f4f4",
     height: "100vh",
     display: "flex",
     alignItems: "flex-start",
-    justifyContent: "center"
+    justifyContent: "center",
+    fontFamily: "Roboto"
   },
   container: {
     width: "50%",
@@ -22,7 +23,13 @@ const styles = {
     display: "flex",
     width: "100%",
     justifyContent: "space-between",
-    color: "white"
+    alignItems: "center",
+    color: "black",
+
+    "& h1": {
+      fontWeight: "300",
+      fontSize: "2rem"
+    }
   },
   palettes: {
     boxSizing: "border-box",
@@ -34,6 +41,9 @@ const styles = {
 };
 
 class PaletteList extends Component {
+  goToPalette(id) {
+    this.props.history.push(`/palette/${id}`);
+  }
   render() {
     const { palettes, classes } = this.props;
     return (
@@ -45,7 +55,10 @@ class PaletteList extends Component {
           <div className={classes.palettes}>
             {palettes.map(palette => (
               <p>
-                <MiniPalette {...palette} />
+                <MiniPalette
+                  handleClick={() => this.goToPalette(palette.id)}
+                  {...palette}
+                />
               </p>
             ))}
           </div>
