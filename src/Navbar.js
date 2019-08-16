@@ -28,6 +28,7 @@ export default class Navbar extends Component {
   render() {
     const { level, changeLevel, showingAllColors } = this.props;
     const { format, open } = this.state;
+    const key = 0;
     return (
       <nav className="Navbar">
         <div className="logo">
@@ -62,13 +63,8 @@ export default class Navbar extends Component {
           message={<span id="message-id">Format set to {format}</span>}
           ContentProps={{ "aria-describedby": "message-id" }}
           action={[
-            <IconButton>
-              <CloseIcon
-                onClick={this.closeSnackbar}
-                color="inherit"
-                key="close"
-                aria-label="close"
-              />
+            <IconButton key={key + 1} onClick={this.closeSnackbar}>
+              <CloseIcon color="inherit" key="close" aria-label="close" />
             </IconButton>
           ]}
         />
