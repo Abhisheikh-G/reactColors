@@ -24,6 +24,9 @@ export default {
     "& h1": {
       fontWeight: "300",
       fontSize: "2rem"
+    },
+    "& a": {
+      textDecoration: "none"
     }
   },
   palettes: {
