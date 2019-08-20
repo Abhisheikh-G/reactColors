@@ -81,6 +81,7 @@ export default function NewPaletteForm(props) {
   const [currColor, setColor] = useState("teal");
   const [colors, createColor] = useState([{ color: "blue", name: "blue" }]);
   const [newName, addName] = useState("");
+  const [newPaletteName, addNewPaletteName] = useState("");
 
   const colorHandler = () => {
     const newColor = { name: newName, color: currColor };
@@ -89,6 +90,7 @@ export default function NewPaletteForm(props) {
   };
 
   useEffect(() => {
+    const { palettes } = props;
     ValidatorForm.addValidationRule("isColorNameUnique", value => {
       return colors.every(
         ({ name }) => name.toLowerCase() !== value.toLowerCase()
@@ -97,6 +99,12 @@ export default function NewPaletteForm(props) {
 
     ValidatorForm.addValidationRule("isColorUnique", value => {
       return colors.every(({ color }) => color !== currColor);
+    });
+
+    ValidatorForm.addValidationRule("isPaletteNameUnique", value => {
+      return palettes.every(
+        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
+      );
     });
   });
 
@@ -109,7 +117,7 @@ export default function NewPaletteForm(props) {
   }
 
   function handleSubmit() {
-    let newName = "New Test Palette";
+    let newName = newPaletteName;
     const newPalette = {
       paletteName: newName,
       id: newName.toLowerCase().replace(/ /g, "-"),
@@ -140,11 +148,23 @@ export default function NewPaletteForm(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Add New Palette
           </Typography>
-          <Button variant="contained" color="primary" onClick={handleSubmit}>
-            Save Palette
-          </Button>
+          <ValidatorForm onSubmit={handleSubmit} instantValidate={false}>
+            <TextValidator
+              label="Palette Name"
+              onChange={evt => addNewPaletteName(evt.target.value)}
+              value={newPaletteName}
+              validators={["required", "isPaletteNameUnique"]}
+              errorMessages={[
+                "Enter Palette Name",
+                "That name is already taken"
+              ]}
+            />
+            <Button variant="contained" color="primary" type="submit">
+              Save Palette
+            </Button>
+          </ValidatorForm>
         </Toolbar>
       </AppBar>
       <Drawer
