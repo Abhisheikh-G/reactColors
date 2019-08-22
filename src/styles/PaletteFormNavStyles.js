@@ -25,7 +25,9 @@ const useStyles = makeStyles(theme => ({
   menuButton: {
     marginRight: theme.spacing(2)
   },
-
+  hide: {
+    display: "none"
+  },
   navBtns: {
     marginRight: "1rem"
   },
