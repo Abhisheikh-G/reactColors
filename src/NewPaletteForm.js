@@ -7,7 +7,6 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import DraggableColorList from "./DraggableColorList";
 import { arrayMove } from "react-sortable-hoc";
 import ColorPickerForm from "./ColorPickerForm";
@@ -18,23 +17,6 @@ const drawerWidth = 400;
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
-  },
-  appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
   },
   hide: {
     display: "none"
