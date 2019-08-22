@@ -104,7 +104,7 @@ export default function PaletteFormNav(props) {
         <PaletteMetaForm
           palettes={palettes}
           handleSubmit={handleSubmit}
-          formOpen={formShowing}
+          closeForm={() => setFormShowing(false)}
         />
       )}
     </div>
