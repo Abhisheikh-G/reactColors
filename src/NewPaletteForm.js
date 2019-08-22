@@ -40,7 +40,7 @@ export default function NewPaletteForm(props) {
   }
 
   function handleSubmit(newPalette) {
-    newPalette.id = newPalette.name.toLowerCase().replace(/ /g, "-");
+    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
     newPalette.colors = colors;
 
     props.savePalette(newPalette);
