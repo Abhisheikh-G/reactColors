@@ -11,6 +11,7 @@ import "emoji-mart/css/emoji-mart.css";
 
 export default function PaletteMetaForm(props) {
   const [newPaletteName, addNewPaletteName] = useState("");
+  const [stage, setStage] = useState("form");
   const { handleSubmit, palettes, closeForm } = props;
 
   useEffect(() => {
@@ -21,24 +22,33 @@ export default function PaletteMetaForm(props) {
     });
   });
 
+  const showEmojiPicker = () => {
+    setStage("emoji");
+  };
+
+  const savePalette = emoji => {
+    handleSubmit({ paletteName: newPaletteName, emoji: emoji.native });
+  };
+
   return (
     <div>
+      <Dialog open={stage === "emoji"} onClose={closeForm}>
+        <DialogTitle id="form-dialog-title">Pick A Palette Emoji</DialogTitle>
+        <Picker title="Select Emoji" onSelect={savePalette} />
+      </Dialog>
       <Dialog
-        open={closeForm}
+        open={stage === "form"}
         onClose={closeForm}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">New Palette Name</DialogTitle>
-        <ValidatorForm
-          onSubmit={() => handleSubmit(newPaletteName)}
-          instantValidate={false}
-        >
+        <ValidatorForm onSubmit={showEmojiPicker} instantValidate={false}>
           <DialogContent>
             <DialogContentText>
               Please enter a name for the new palette. (All names must be
               unique)
             </DialogContentText>
-            <Picker />
+
             <TextValidator
               label="Palette Name"
               fullWidth
