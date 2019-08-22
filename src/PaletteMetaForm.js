@@ -10,7 +10,7 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 export default function PaletteMetaForm(props) {
   const [open, setOpen] = React.useState(false);
   const [newPaletteName, addNewPaletteName] = useState("");
-  const { handleSubmit, palettes } = props;
+  const { handleSubmit, palettes, formOpen } = props;
 
   function handleClickOpen() {
     setOpen(true);
@@ -26,30 +26,32 @@ export default function PaletteMetaForm(props) {
         ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
       );
     });
+
+    setOpen(formOpen);
   });
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
-          <ValidatorForm
-            onSubmit={() => handleSubmit(newPaletteName)}
-            instantValidate={false}
-          >
+        <DialogTitle id="form-dialog-title">New Palette Name</DialogTitle>
+        <ValidatorForm
+          onSubmit={() => handleSubmit(newPaletteName)}
+          instantValidate={false}
+        >
+          <DialogContent>
+            <DialogContentText>
+              Please enter a name for the new palette. (All names must be
+              unique)
+            </DialogContentText>
+
             <TextValidator
               label="Palette Name"
+              fullWidth
+              margin="normal"
               onChange={evt => addNewPaletteName(evt.target.value)}
               value={newPaletteName}
               validators={["required", "isPaletteNameUnique"]}
@@ -58,19 +60,16 @@ export default function PaletteMetaForm(props) {
                 "That name is already taken"
               ]}
             />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
+            </Button>
             <Button variant="contained" color="primary" type="submit">
               Save Palette
             </Button>
-          </ValidatorForm>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Subscribe
-          </Button>
-        </DialogActions>
+          </DialogActions>
+        </ValidatorForm>
       </Dialog>
     </div>
   );
