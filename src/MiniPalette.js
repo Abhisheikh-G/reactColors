@@ -11,7 +11,7 @@ function MiniPalette(props) {
     id,
     colors,
     handleClick,
-    handleDelete
+    openDialog
   } = props;
   const miniColorBoxes = colors.map(color => (
     <div
@@ -23,7 +23,7 @@ function MiniPalette(props) {
 
   const deletePalette = evt => {
     evt.stopPropagation();
-    handleDelete(id);
+    openDialog(id);
   };
 
   return (
