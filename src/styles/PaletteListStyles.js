@@ -1,5 +1,5 @@
 import sizes from "./Sizes";
-
+import bg from "./bg.svg";
 export default {
   root: {
     backgroundColor: "#f4f4f4",
@@ -7,7 +7,12 @@ export default {
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",
-    fontFamily: "Roboto"
+    fontFamily: "Roboto",
+    /* Background By SVGBackgrounds.com */
+    backgroundColor: "#6ee0ff",
+    backgroundImage: `url(${bg})`,
+    overflow: "scroll",
+    backgroundSize: "cover"
   },
   container: {
     width: "60%",
@@ -34,7 +39,8 @@ export default {
       fontSize: "2rem"
     },
     "& a": {
-      textDecoration: "none"
+      textDecoration: "none",
+      color: "black"
     }
   },
   palettes: {
