@@ -32,7 +32,7 @@ export default {
       width: "80%"
     },
     [sizes.down("xs")]: {
-      width: "70%"
+      width: "75%"
     }
   },
   nav: {
@@ -44,11 +44,26 @@ export default {
 
     "& h1": {
       fontWeight: "300",
-      fontSize: "2rem"
+      fontSize: "2rem",
+      [sizes.down("md")]: {
+        fontSize: "1.8rem"
+      },
+      [sizes.down("xs")]: {
+        fontSize: "1.5rem"
+      }
     },
     "& a": {
       textDecoration: "none",
-      color: "black"
+      color: "black",
+      margin: "1rem",
+      fontSize: "1rem",
+      [sizes.down("sm")]: {
+        fontSize: ".8rem",
+        margin: ".8rem"
+      },
+      [sizes.down("xs")]: {
+        display: "block"
+      }
     }
   },
   palettes: {

@@ -38,6 +38,11 @@ class PaletteList extends Component {
     this.closeDialog();
   };
 
+  resetDefaults = () => {
+    window.localStorage.clear();
+    window.location.reload(true);
+  };
+
   goToPalette(id) {
     this.props.history.push(`/palette/${id}`);
   }
@@ -50,7 +55,12 @@ class PaletteList extends Component {
         <div className={classes.container}>
           <nav className={classes.nav}>
             <h1>Color Picker</h1>
-            <Link to="/palette/new">Create New Palette</Link>
+            <div>
+              <Link to="/" onClick={this.resetDefaults}>
+                Reset Default Palettes
+              </Link>
+              <Link to="/palette/new">Create New Palette</Link>
+            </div>
           </nav>
 
           <TransitionGroup className={classes.palettes}>

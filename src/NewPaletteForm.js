@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import clsx from "clsx";
-
 import useStyles from "./styles/NewPaletteFormStyles";
 import Drawer from "@material-ui/core/Drawer";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
-
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import DraggableColorList from "./DraggableColorList";
 import { arrayMove } from "react-sortable-hoc";
 import ColorPickerForm from "./ColorPickerForm";
 import PaletteFormNav from "./PaletteFormNav";
+import seedColors from "./seedColors";
 
 export default function NewPaletteForm(props) {
   const maxColors = 20;
@@ -21,7 +20,7 @@ export default function NewPaletteForm(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [currColor, setColor] = useState("teal");
-  const [colors, createColor] = useState(props.palettes[0].colors);
+  const [colors, createColor] = useState(seedColors[4].colors);
   const [newName, addName] = useState("");
 
   const colorHandler = () => {
