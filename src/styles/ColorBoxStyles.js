@@ -15,15 +15,15 @@ export default {
       transition: "0.5s"
     },
     [sizes.down("lg")]: {
-      height: props => (props.showingFullPalette ? "20%" : "50%"),
-      width: "25%"
+      height: props => (props.showingFullPalette ? "20%" : "30.333%"),
+      width: props => (props.showingFullPalette ? "25%" : "33.3333%")
     },
     [sizes.down("md")]: {
-      height: props => (props.showingFullPalette ? "10%" : "50%"),
-      width: "50%"
+      height: props => (props.showingFullPalette ? "10%" : "20%"),
+      width: props => (props.showingFullPalette ? "50%" : "50%")
     },
     [sizes.down("xs")]: {
-      width: "100%",
+      width: props => (props.showingFullPalette ? "100%" : "100%"),
       height: props => (props.showingFullPalette ? "5%" : "10%")
     }
   },
@@ -117,7 +117,10 @@ export default {
       textAlign: "center",
       marginBottom: "0",
       padding: "1rem",
-      textTransform: "uppercase"
+      textTransform: "uppercase",
+      [sizes.down("xs")]: {
+        fontSize: "5rem"
+      }
     },
     "& p": {
       fontSize: "2rem",
