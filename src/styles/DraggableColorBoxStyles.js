@@ -1,5 +1,5 @@
 import chroma from "chroma-js";
-
+import sizes from "./Sizes";
 export default {
   root: {
     width: "20%",
@@ -13,6 +13,18 @@ export default {
       color: props =>
         chroma(props.color).luminance() >= 0.7 ? "black" : "white",
       transform: "scale(1.5)"
+    },
+    [sizes.down("lg")]: {
+      width: "25%",
+      height: "20%"
+    },
+    [sizes.down("md")]: {
+      width: "50%",
+      height: "9.7%"
+    },
+    [sizes.down("sm")]: {
+      width: "100%",
+      height: "5%"
     }
   },
   boxContent: {
