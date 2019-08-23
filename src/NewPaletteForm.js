@@ -20,7 +20,7 @@ export default function NewPaletteForm(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [currColor, setColor] = useState("teal");
-  const [colors, createColor] = useState(seedColors[4].colors);
+  const [colors, createColor] = useState(seedColors[0].colors);
   const [newName, addName] = useState("");
 
   const colorHandler = () => {
@@ -53,8 +53,14 @@ export default function NewPaletteForm(props) {
   function addRandomColor() {
     //Picks a random color from existing palettes
     const allColors = props.palettes.map(p => p.colors).flat();
-    let rand = Math.floor(Math.random() * allColors.length);
-    const randomColor = allColors[rand];
+    let rand;
+    let randomColor;
+    let isDuplicate = true;
+    while (isDuplicate) {
+      rand = Math.floor(Math.random() * allColors.length);
+      randomColor = allColors[rand];
+      isDuplicate = colors.some(color => color.name === randomColor.name);
+    }
     createColor([...colors, randomColor]);
   }
 
