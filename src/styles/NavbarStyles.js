@@ -50,8 +50,8 @@ export default {
       marginLeft: "-7px",
       marginTop: "-3px"
     },
-    [sizes.down("md")]: {
-      width: "140px"
+    [sizes.down("sm")]: {
+      width: "150px"
     }
   }
 };
